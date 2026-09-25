@@ -70,7 +70,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: onyxaholguin-cyber/n8n-workflow-audit@v0.1.0
+      - uses: onyxaholguin-cyber/n8n-workflow-audit@v0.1.1
         with:
           path: workflows
           fail-on: error      # error | warn | info | none

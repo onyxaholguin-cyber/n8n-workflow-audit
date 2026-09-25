@@ -1,6 +1,6 @@
 {
   "name": "n8n-workflow-audit",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Static checks for exported n8n workflows: pasted secrets, unauthenticated webhooks, missing error workflows, swallowed errors, pinned data, orphan nodes.",
   "bin": { "n8n-audit": "bin/n8n-audit.js" },
   "main": "src/audit.js",
