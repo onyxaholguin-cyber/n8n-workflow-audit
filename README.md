@@ -101,7 +101,7 @@ Every finding comes with a one-line fix. `no-error-workflow` only applies to wor
 
 ## How it was tested
 
-- Unit and CLI tests: `node --test test/` (secret patterns, redaction, placeholders, AI sub-node connections, error outputs, exit codes, formats). CI runs them on Node 18, 20 and 22.
+- Unit and CLI tests: `node --test test/audit.test.js` (secret patterns, redaction, placeholders, AI sub-node connections, error outputs, exit codes, formats). CI runs them on Node 18, 20 and 22.
 - Ran against 99 public workflows from the n8n.io template gallery: **0 false "secret" errors** after placeholder handling (`YOUR_TOKEN`, `$ENV_VAR`, `[REDACTED]`, `{api_key}` and similar are ignored).
 - Static analysis only: it never connects to your n8n instance and never sends data anywhere.
 

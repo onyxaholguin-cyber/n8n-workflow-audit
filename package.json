@@ -5,7 +5,7 @@
   "bin": { "n8n-audit": "bin/n8n-audit.js" },
   "main": "src/audit.js",
   "files": ["bin", "src", "action.yml"],
-  "scripts": { "test": "node --test test/" },
+  "scripts": { "test": "node --test test/audit.test.js" },
   "engines": { "node": ">=18" },
   "keywords": ["n8n", "lint", "audit", "security", "workflow", "automation", "github-action"],
   "license": "MIT",
