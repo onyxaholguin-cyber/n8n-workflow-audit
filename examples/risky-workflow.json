@@ -1,0 +1,18 @@
+{
+  "name": "Example: risky lead intake",
+  "nodes": [
+    { "parameters": { "httpMethod": "POST", "path": "new-lead", "options": {} }, "id": "a1", "name": "Webhook", "type": "n8n-nodes-base.webhook", "typeVersion": 2, "position": [0, 0], "webhookId": "00000000-0000-0000-0000-000000000001" },
+    { "parameters": { "method": "POST", "url": "http://crm.example.com/api/leads", "sendHeaders": true,
+        "headerParameters": { "parameters": [ { "name": "Authorization", "value": "Bearer demo0not0a0real0token0abcdefghij" }, { "name": "X-API-Key", "value": "demo-key-not-real-000111" } ] },
+        "sendBody": true, "bodyParameters": { "parameters": [ { "name": "email", "value": "={{ $json.body.email }}" } ] }, "options": { "allowUnauthorizedCerts": true } },
+      "id": "a2", "name": "Create lead", "type": "n8n-nodes-base.httpRequest", "typeVersion": 4.2, "position": [220, 0], "onError": "continueRegularOutput" },
+    { "parameters": { "jsCode": "const apiKey = 'demo_not_real_1234567890abcdef';\nreturn items;" }, "id": "a3", "name": "Enrich", "type": "n8n-nodes-base.code", "typeVersion": 2, "position": [440, 0] },
+    { "parameters": {}, "id": "a4", "name": "Old step", "type": "n8n-nodes-base.noOp", "typeVersion": 1, "position": [440, 200], "disabled": true }
+  ],
+  "connections": {
+    "Webhook": { "main": [[{ "node": "Create lead", "type": "main", "index": 0 }]] },
+    "Create lead": { "main": [[{ "node": "Enrich", "type": "main", "index": 0 }]] }
+  },
+  "pinData": { "Webhook": [{ "json": { "body": { "email": "someone@example.com" } } }] },
+  "settings": { "executionOrder": "v1", "saveDataErrorExecution": "none" }
+}

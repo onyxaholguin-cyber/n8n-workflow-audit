@@ -1,0 +1,35 @@
+name: 'n8n workflow audit'
+description: 'Static checks for exported n8n workflow JSON: pasted secrets, unauthenticated webhooks, missing error workflows and more.'
+author: 'Sheet & Flow'
+branding: { icon: 'shield', color: 'green' }
+inputs:
+  path:
+    description: 'File(s) or directory to scan (space-separated)'
+    required: false
+    default: '.'
+  fail-on:
+    description: 'error | warn | info | none'
+    required: false
+    default: 'error'
+  min-level:
+    description: 'Only report findings at or above: error | warn | info'
+    required: false
+    default: 'warn'
+  ignore:
+    description: 'Comma-separated rule ids to skip'
+    required: false
+    default: ''
+runs:
+  using: 'composite'
+  steps:
+    - shell: bash
+      env:
+        IN_PATH: ${{ inputs.path }}
+        IN_FAIL: ${{ inputs.fail-on }}
+        IN_MIN: ${{ inputs.min-level }}
+        IN_IGNORE: ${{ inputs.ignore }}
+      run: |
+        args=(--format github --fail-on "$IN_FAIL" --min-level "$IN_MIN")
+        if [ -n "$IN_IGNORE" ]; then args+=(--ignore "$IN_IGNORE"); fi
+        read -ra paths <<< "$IN_PATH"
+        node "$GITHUB_ACTION_PATH/bin/n8n-audit.js" "${args[@]}" "${paths[@]}"

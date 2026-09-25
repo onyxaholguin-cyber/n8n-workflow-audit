@@ -1,0 +1,13 @@
+{
+  "name": "Example: clean lead intake",
+  "nodes": [
+    { "parameters": { "httpMethod": "POST", "path": "new-lead", "authentication": "headerAuth", "options": {} }, "id": "b1", "name": "Webhook", "type": "n8n-nodes-base.webhook", "typeVersion": 2, "position": [0, 0], "webhookId": "00000000-0000-0000-0000-000000000002", "credentials": { "httpHeaderAuth": { "id": "1", "name": "Intake header" } } },
+    { "parameters": { "method": "POST", "url": "https://crm.example.com/api/leads", "authentication": "genericCredentialType", "genericAuthType": "httpHeaderAuth",
+        "sendBody": true, "bodyParameters": { "parameters": [ { "name": "email", "value": "={{ $json.body.email }}" } ] }, "options": {} },
+      "id": "b2", "name": "Create lead", "type": "n8n-nodes-base.httpRequest", "typeVersion": 4.2, "position": [220, 0], "retryOnFail": true, "maxTries": 3, "waitBetweenTries": 5000,
+      "credentials": { "httpHeaderAuth": { "id": "2", "name": "CRM API" } } },
+    { "parameters": { "content": "Errors go to the 'Error alerts' workflow (Settings > Error Workflow)." }, "id": "b3", "name": "Sticky Note", "type": "n8n-nodes-base.stickyNote", "typeVersion": 1, "position": [0, -200] }
+  ],
+  "connections": { "Webhook": { "main": [[{ "node": "Create lead", "type": "main", "index": 0 }]] } },
+  "settings": { "executionOrder": "v1", "errorWorkflow": "42" }
+}
