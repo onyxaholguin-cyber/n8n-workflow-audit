@@ -111,6 +111,7 @@ Free, tested guides on the Sheet & Flow site:
 
 - [Set up an n8n error alert workflow](https://onyxaholguin-cyber.github.io/sheet-and-flow/tutorials/n8n-error-alert-workflow/) (fixes `no-error-workflow`)
 - [Back up n8n properly, including the encryption key](https://onyxaholguin-cyber.github.io/sheet-and-flow/tutorials/backup-n8n-properly/)
+- [n8n-key-check](https://github.com/onyxaholguin-cyber/n8n-key-check): verify your `N8N_ENCRYPTION_KEY` decrypts your credentials before a migration or restore
 - [Self-host n8n with Docker Compose + Postgres](https://onyxaholguin-cyber.github.io/sheet-and-flow/tutorials/self-host-n8n-docker-compose-postgres/) and the free [n8n Docker Compose generator](https://onyxaholguin-cyber.github.io/sheet-and-flow/tools/n8n-compose-generator/)
 
 If you'd rather not build it yourself, the paid **n8n Reliability Pack** (deduplicated error alerts, Git and disk backups, uptime/SSL monitor, weekly failure report) and **n8n Production Self-Hosting Kit** are listed [on the site](https://onyxaholguin-cyber.github.io/sheet-and-flow/#products). This tool is free and MIT-licensed either way.
